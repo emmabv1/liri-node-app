@@ -65,13 +65,14 @@ else if (command === "movie-this") {
 
     request(queryUrl, function(error, response, body) {
         if (!error && response.statusCode === 200) {
-          console.log("Title: " + JSON.parse(body).Title);
-          console.log("Release Year: " + JSON.parse(body).Year);
-          console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-          //rotten tomatoes rating
-          console.log("Production Country: " + JSON.parse(body).Country);
-          console.log("Plot: " + JSON.parse(body).Plot);
-          console.log("Actors: " + JSON.parse(body).Actors);
+            var rotten = JSON.parse(body).Ratings.filter(val => val.Source = "Rotten Tomatoes")[1].Value;
+            console.log("Title: " + JSON.parse(body).Title);
+            console.log("Release Year: " + JSON.parse(body).Year);
+            console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+            console.log("Rotten Tomatoes Score: " + rotten)
+            console.log("Production Country: " + JSON.parse(body).Country);
+            console.log("Plot: " + JSON.parse(body).Plot);
+            console.log("Actors: " + JSON.parse(body).Actors);
         }
     });
 
